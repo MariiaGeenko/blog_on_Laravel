@@ -1,8 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
+use App\QueryBuilders\QueryBuilder;
+use App\QueryBuilders\NewsQueryBuilder;
 use Illuminate\Support\ServiceProvider;
+use App\QueryBuilders\CategoriesQueryBuilder;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,7 +16,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(QueryBuilder::class, CategoriesQueryBuilder::class);
+        $this->app->bind(QueryBuilder::class, NewsQueryBuilder::class);
+
     }
 
     /**

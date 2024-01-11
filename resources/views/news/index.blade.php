@@ -10,7 +10,7 @@
               <a class="text-dark" href="{{ route('news.show', ['id' =>  $n['id']]) }}">{{ $n['title'] }}</a>
           </h3>
           <div class="mb-1 text-body-secondary">{{ $n['created_at'] }}</div>
-          <p class="card-text mb-auto">{!! $n['discription']!!}</p>
+          <p class="card-text mb-auto">{!! $n['description']!!}</p>
           <a href="{{ route('news.show', ['id' =>  $n['id']]) }}" class="icon-link gap-1 icon-link-hover stretched-link">
             Continue reading
             <svg class="bi"><use xlink:href="#chevron-right"/></svg>

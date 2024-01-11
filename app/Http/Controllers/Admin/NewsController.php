@@ -4,25 +4,37 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Controller;
+use App\QueryBuilders\CategoriesQueryBuilder;
+use App\QueryBuilders\NewsQueryBuilder;
 
 class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(NewsQueryBuilder $newsQueryBuilder): View
     {
-        //
+        $newsList = $newsQueryBuilder->getAll(); // ->getNewsByStatus('draft');
+
+        return \view('admin.news.index', [
+
+            'newsList' => $newsList
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(CategoriesQueryBuilder $categoriesQueryBuilder): View
     {
-        //
+        return \view('admin.news.create', [
+            'categories' => $categoriesQueryBuilder->getAll(),
+        ]);
     }
 
     /**

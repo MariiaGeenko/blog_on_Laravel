@@ -17,7 +17,7 @@ trait NewsTrait
             $news[$i] = [
                 'id' => $i,
                 'title' => \fake()->jobTitle(),
-                'discription' => \fake()->text(100),
+                'description' => \fake()->text(100),
                 'author' => \fake()->userName(),
                 'created_at' => \now()->format('d-m-Y H:i'),
             ];
@@ -28,7 +28,7 @@ trait NewsTrait
     return [
         'id' => $id,
         'title' => \fake()->jobTitle(),
-        'discription' => \fake()->text(100),
+        'description' => \fake()->text(100),
         'author' => \fake()->userName(),
         'created_at' => \now()->format('d-m-Y H:i'),
     ];
