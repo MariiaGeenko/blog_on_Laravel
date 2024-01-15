@@ -7,7 +7,7 @@ namespace App\QueryBuilders;
 use App\Models\Category;
 use App\QueryBuilders\QueryBuilder;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Builder;
 
 final class CategoriesQueryBuilder extends QueryBuilder
 {

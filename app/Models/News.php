@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class News extends Model
 {
@@ -13,5 +15,20 @@ class News extends Model
 
     protected $table = 'news';
 
+    protected $fillable = [
+        'title',
+        'author',
+        'status',
+        'image',
+        'description',
+    ];
 
+    protected $casts = [
+        'categories_id' => 'array',
+    ];
+
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class, 'category_has_news', 'news_id', 'category_id', 'id', 'id');
+    }
 }

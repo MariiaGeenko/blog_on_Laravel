@@ -5,12 +5,16 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Models\News;
+
+use App\Enums\NewsStatus;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
-use App\QueryBuilders\CategoriesQueryBuilder;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\News\EditRequest;
 use App\QueryBuilders\NewsQueryBuilder;
+use App\Http\Requests\News\CreateRequest;
+use App\QueryBuilders\CategoriesQueryBuilder;
 
 class NewsController extends Controller
 {
@@ -23,7 +27,7 @@ class NewsController extends Controller
 
         return \view('admin.news.index', [
 
-            'newsList' => $newsList
+            'newsList' => $newsQueryBuilder->getNewsWithPagination(),
         ]);
     }
 
@@ -34,15 +38,23 @@ class NewsController extends Controller
     {
         return \view('admin.news.create', [
             'categories' => $categoriesQueryBuilder->getAll(),
+            'statuses' => NewsStatus::all(),
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request): RedirectResponse
     {
-        //
+        $news = News::create($request->validated());
+
+        if ($news) {
+            $news->categories()->attach($request->getCategoryIds());
+            return \redirect()->route('admin.news.index')->with('success', 'added news');
+        }
+
+        return \back()->with('error', "don't added news");
     }
 
     /**
@@ -56,17 +68,29 @@ class NewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(News $news,
+    CategoriesQueryBuilder $categoriesQueryBuilder): View
     {
-        //
+        return \view('admin.news.edit', [
+            'news' => $news,
+            'categories' => $categoriesQueryBuilder->getAll(),
+            'statuses' => NewsStatus::all(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(EditRequest $request, News $news): RedirectResponse
     {
-        //
+        $news = $news->fill($request->validated());
+
+        if ($news->save()) {
+            $news->categories()->sync($request->getCategoryIds());
+            return \redirect()->route('admin.news.index')->with('success', 'edited news');
+        }
+
+        return \back()->with('error', "don't edited news");
     }
 
     /**

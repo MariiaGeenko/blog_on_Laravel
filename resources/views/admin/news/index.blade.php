@@ -11,6 +11,7 @@
         <thead>
             <tr>
                 <th>#ID</th>
+                <th>Category</th>
                 <th>Title</th>
                 <th>Author</th>
                 <th>Description</th>
@@ -23,12 +24,13 @@
         @forelse ($newsList as $news)
         <tr>
             <td>{{ $news->id }}</td>
+            <td>{{ $news->categories->map(fn($item) => $item->title)->implode(",") }}</td>
             <td>{{ $news->title }}</td>
             <td>{{ $news->author }}</td>
             <td>{{ $news->description }}</td>
             <td>{{ $news->status }}</td>
             <td>{{ $news->created_at }}</td>
-            <td><a href="">Action</a> &nbsp; <a href="" style="color: red">Action</a></td>
+            <td><a href="{{ route('admin.news.edit', ['news' => $news]) }}">Edit</a> &nbsp; <a href="" style="color: red">Delete</a></td>
         </tr>
         @empty
             <tr>
@@ -37,5 +39,7 @@
         @endforelse
         </tbody>
     </table>
+
+    {{ $newsList->links() }}
 </div>
 @endsection

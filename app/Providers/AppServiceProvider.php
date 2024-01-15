@@ -8,6 +8,7 @@ use App\QueryBuilders\QueryBuilder;
 use App\QueryBuilders\NewsQueryBuilder;
 use Illuminate\Support\ServiceProvider;
 use App\QueryBuilders\CategoriesQueryBuilder;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Paginator::useBootstrapFive();
     }
 }

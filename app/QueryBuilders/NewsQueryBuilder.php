@@ -8,6 +8,7 @@ use App\Models\News;
 use App\QueryBuilders\QueryBuilder;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * Summary of NewsQueryBuilder
@@ -36,6 +37,11 @@ final class NewsQueryBuilder extends QueryBuilder
     public function getNewsByStatus(string $status): Collection
     {
          return News::query()->get(); //where('status', $status)->
+    }
+
+    public function getNewsWithPagination(int $quantity = 10): LengthAwarePaginator
+    {
+        return $this->model->with('categories')->paginate($quantity);
     }
 
     function getAll(): Collection
