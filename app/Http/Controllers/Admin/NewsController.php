@@ -9,12 +9,14 @@ use App\Models\News;
 use App\Enums\NewsStatus;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\News\EditRequest;
 use App\QueryBuilders\NewsQueryBuilder;
 use App\Http\Requests\News\CreateRequest;
 use App\QueryBuilders\CategoriesQueryBuilder;
+use \Illuminate\Http\JsonResponse;
 
 class NewsController extends Controller
 {
@@ -96,8 +98,17 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+    public
+        function destroy(News $news): JsonResponse
+        {
+            try {
+                $news->delete();
+
+                return \response()->json('ok');
+            } catch (\Exception $exception) {
+                Log::error($exception->getMessage(), [$exception]);
+
+                return \response()->json('error', 400);
+            }
+        }
 }

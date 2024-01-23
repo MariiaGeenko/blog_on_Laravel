@@ -4,6 +4,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@section('title') - NewsPortal @show</title>
 
@@ -161,5 +162,11 @@
 </div>
 <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/js/dashboard.js') }}"></script>
+
+<script>
+    feather.replace()
+</script>
+
+@stack('js')
 </body>
 </html>

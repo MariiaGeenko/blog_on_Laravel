@@ -17,8 +17,8 @@
                 <select class="form-control @error('category_ids[]') is-invalid @enderror" name="category_ids[]" id="category_ids" multiple>
                     <option value="0">select</option>
                     @foreach ($categories as $category)
-                    <option @if((int)old('category_id') === $category->id) selected @endif value="{{ $category->id }}">{{ $category->title }}
-                    </option>
+                        <option @if((int)old('category_id') === $category->id) selected @endif value="{{ $category->id }}">{{ $category->title }}
+                        </option>
                     @endforeach
                 </select>
                 @error('categories_ids') @enderror
