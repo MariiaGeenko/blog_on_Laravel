@@ -17,9 +17,7 @@ trait CategoryNewsTrait
                 $category[$i] = [
                     'id' => $i,
                     'title' => \fake()->jobTitle(),
-                    'category_id' => \fake()->unique()->randomDigit(),
                     'description' => \fake()->text(100),
-                    'author' => \fake()->userName(),
                     'created_at' => \now()->format('d-m-y h:i'),
                 ];
             }
@@ -31,7 +29,6 @@ trait CategoryNewsTrait
             'id' => $id,
             'title' => \fake()->jobTitle(),
             'description' => \fake()->text(100),
-            'author' => \fake()->userName(),
             'created_at' => \now()->format('d-m-y h:i'),
         ];
     }

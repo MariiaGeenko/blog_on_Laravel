@@ -18,8 +18,8 @@ final class CategoriesQueryBuilder extends QueryBuilder
         $this->model = Category::query();
     }
 
-    public function getAll(): Collection
+    function getAll(): Collection
     {
-        return $this->model->get();
+        return Category::query()->get();
     }
 }

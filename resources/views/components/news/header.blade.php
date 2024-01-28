@@ -7,8 +7,15 @@
         <a class="blog-header-logo text-body-emphasis text-decoration-none" href="#">FREE_HUMANITY</a>
       </div>
       <div class="col-4 d-flex justify-content-end align-items-center">
-        <a class="btn btn-sm btn-outline-secondary" href="/register">Sign up</a>
-        <a class="btn btn-sm btn-outline-secondary" href="/login">Sign in</a>
+
+        @guest
+        <a class="btn btn-sm btn-outline-secondary" href="{{ route('register') }}">Sign up</a>
+        <a class="btn btn-sm btn-outline-secondary" href="{{ route('login') }}">Sign in</a>
+        @endguest
+
+        @auth
+        <a class="btn btn-sm btn-outline-secondary" href="{{ route('account.logout') }}">Log out</a>
+        @endauth
       </div>
     </div>
   </header>
