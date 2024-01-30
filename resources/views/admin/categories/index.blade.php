@@ -32,6 +32,6 @@
         </tbody>
     </table>
 
-    {{ $categoriesList->links() }}
+
 </div>
 @endsection

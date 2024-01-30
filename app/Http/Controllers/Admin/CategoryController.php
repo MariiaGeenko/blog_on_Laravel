@@ -20,7 +20,8 @@ class CategoryController extends Controller
 
         return \view('admin.categories.index', [
 
-            'categoriesList' => $categoriesQueryBuilder,
+            'categoriesList' => $newsList,
+
         ]);
     }
 

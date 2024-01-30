@@ -16,7 +16,7 @@ class MainNewsController extends Controller
     {
         $model = new Main_news();
         $main_news = $model->getMainNews();
-        dd($model);
+
         return \view('components.news.main_news', [
             'main_news' => $main_news,
         ]);
