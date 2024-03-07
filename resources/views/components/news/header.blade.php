@@ -16,6 +16,11 @@
         @auth
         <a class="btn btn-sm btn-outline-secondary" href="{{ route('account.logout') }}">Log out</a>
         @endauth
+
+        @if(Auth::user()->isAdmin === true)
+        <a class="btn btn-sm btn-outline-secondary" href="{{ route('admin.index') }}">A panel</a>
+    @endif
+
       </div>
     </div>
   </header>

@@ -57,7 +57,16 @@
 
 <main class="container">
   <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
-    <x-news.main_news></x-news.main_news>
+    <div class="col-lg-6 px-0">
+        @foreach ($main_news as $main_new)
+
+        <h1>{{ $main_new->title }}</h1>
+        <p class="lead my-3">{{ $main_new->description }}</p>
+        <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">Continue reading...</a></p>
+
+        @endforeach
+    </div>
+
   </div>
 
   <div class="main_news">
@@ -65,9 +74,33 @@
   </div>
 
   <div class="row g-5">
-    <x-news.last_post></x-news.last_post>
+
+    <div class="col-md-8">
+        <h3 class="pb-4 mb-4 fst-italic border-bottom">
+          From the Firehose
+        </h3>
+
+        <article class="blog-post">
+          <h2 class="display-5 link-body-emphasis mb-1">Another blog post</h2>
+          <p class="blog-post-meta">December 23, 2020 by <a href="#">Jacob</a></p>
+
+          <p>This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
+          <blockquote>
+            <p>Longer quote goes here, maybe with some <strong>emphasized text</strong> in the middle of it.</p>
+          </blockquote>
+
+        </article>
+
+        <nav class="blog-pagination" aria-label="Pagination">
+          <a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
+          <a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Newer</a>
+        </nav>
+
+      </div>
+
 
     <div class="col-md-4">
+
       <x-news.about></x-news.about>
       <x-news.social></x-news.social>
     </div>
@@ -77,7 +110,8 @@
 </main>
 
 <footer class="py-5 text-center text-body-secondary bg-body-tertiary">
-  <p>news portal of the organisation free_humanity</p>
+  <p>news portal of the organisation FREE_HUMANITY</p>
+  <p>the content of the website is the intellectual property of the fFREE_HUMANITY organisation</p>
   <p class="mb-0">
     <a href="#">Back to top</a>
   </p>

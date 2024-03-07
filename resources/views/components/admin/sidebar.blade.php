@@ -13,7 +13,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('admin.categories.*')) active @endif" href="#">
+            <a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('admin.categories.*')) active @endif" href="{{ route('admin.categories.index') }}">
               <svg class="bi"><use xlink:href="#file-earmark"/></svg>
               Categories
             </a>
@@ -25,7 +25,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="#">
+            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('news') }}">
               <svg class="bi"><use xlink:href="#people"/></svg>
               Users
             </a>

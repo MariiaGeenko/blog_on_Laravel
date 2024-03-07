@@ -67,8 +67,8 @@ Route::get('/news/{id}/show', [NewsController::class, 'show'])
         ->name('news.show');
 });
 
-Route::get('main_news', function() {
-    return view('components.news.main_news');
-})->name('main_news');
+// Route::get('main_news', function() {
+//     return view('components.news.main_news');
+// });
 
 require __DIR__.'/auth.php';

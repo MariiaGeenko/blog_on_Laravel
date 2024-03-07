@@ -48,4 +48,11 @@ final class NewsQueryBuilder extends QueryBuilder
     {
         return News::query()->get();
     }
+
+    public function getNewsById(int $id): Collection
+    {
+        return News::orderBy($id)->get();
+
+        //return News::find($id);
+    }
 }

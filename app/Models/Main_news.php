@@ -14,6 +14,12 @@ class Main_news extends Model
 
     protected $table = 'main_news';
 
+    protected $fillable = [
+        'title',
+        'author',
+        'description',
+    ];
+
     public function getMainNews(): array
     {
         return DB::select("select id, title, description, author from ($this->table)");

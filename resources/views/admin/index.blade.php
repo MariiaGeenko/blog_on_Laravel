@@ -8,4 +8,6 @@
     <div class="table-responsive small">
   {{--    <x-alert type="danger" message="info"></x-alert> --}}
     </div>
+
+    
 @endsection
