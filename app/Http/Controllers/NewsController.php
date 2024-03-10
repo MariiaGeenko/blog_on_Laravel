@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\QueryBuilders\Main_newsQueryBuilder;
+use App\QueryBuilders\AnotherPostsQueryBuilder;
 use Illuminate\Contracts\View\View;
 use App\QueryBuilders\NewsQueryBuilder;
 
@@ -18,12 +19,13 @@ class NewsController extends Controller
 
         $main_news = new Main_newsQueryBuilder();
 
-       // dd($main_news->getAll());
+        $another_posts = new AnotherPostsQueryBuilder();
 
         return \view('news.index', [
 
             'newsList' => $newsQueryBuilder->getNewsWithPagination(),
-            'main_news' => $main_news->getAll()
+            'main_news' => $main_news->getAll(),
+            'another_posts' => $another_posts->getAll()
 
         ]);
     }

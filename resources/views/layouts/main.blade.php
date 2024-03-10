@@ -81,13 +81,18 @@
         </h3>
 
         <article class="blog-post">
-          <h2 class="display-5 link-body-emphasis mb-1">Another blog post</h2>
+
+            @foreach ($another_posts as $another_post)
+
+          <h2 class="display-5 link-body-emphasis mb-1">{{ $another_post->title }}</h2>
           <p class="blog-post-meta">December 23, 2020 by <a href="#">Jacob</a></p>
 
-          <p>This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
+          <p>{{ $another_post->description }}</p>
           <blockquote>
             <p>Longer quote goes here, maybe with some <strong>emphasized text</strong> in the middle of it.</p>
           </blockquote>
+
+          @endforeach
 
         </article>
 
